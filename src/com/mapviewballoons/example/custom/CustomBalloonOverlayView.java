@@ -25,28 +25,28 @@ public class CustomBalloonOverlayView<Item extends OverlayItem> extends BalloonO
 	private TextView title;
 	private TextView snippet;
 	private ImageView image;
-	
+
 	public CustomBalloonOverlayView(Context context, int balloonBottomOffset) {
 		super(context, balloonBottomOffset);
 	}
-	
-	
+
+
 	/**
-	 * ÖØĞÂ°ó¶¨ĞÂµÄ×Ô¶¨ÒåµÄView
+	 * é‡æ–°ç»‘å®šæ–°çš„è‡ªå®šä¹‰çš„View
 	 */
 	@Override
 	protected void setupView(Context context, ViewGroup parent) {
 		LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = mInflater.inflate(R.layout.balloon_overlay_example2, parent);
-		
+
 		title = (TextView) view.findViewById(R.id.balloon_item_title);
 		snippet = (TextView) view.findViewById(R.id.balloon_item_snippet);
 		image = (ImageView) view.findViewById(R.id.balloon_item_image);
 	}
 
-	
+
 	/**
-	 * ¸øĞÂµÄView °ó¶¨Êı¾İ
+	 * ç»™æ–°çš„View ç»‘å®šæ•°æ®
 	 */
 	@Override
 	protected void setBalloonData(CustomOverlayItem item, ViewGroup parent) {
@@ -54,7 +54,7 @@ public class CustomBalloonOverlayView<Item extends OverlayItem> extends BalloonO
 		// map our custom item data to fields
 		title.setText(item.getTitle());
 		snippet.setText(item.getSnippet());
-		
+
 		// get remote image from network.
 		// bitmap results would normally be cached, but this is good enough for demo purpose.
 		image.setImageResource(R.drawable.icon);
@@ -66,10 +66,10 @@ public class CustomBalloonOverlayView<Item extends OverlayItem> extends BalloonO
 	        }
 	    }.execute(item.getImageUrl());
 	}
-	
-	
+
+
 	/**
-	 * ÏÂÔØÍ¼Æ¬µÄÒì²½Ïß³Ì
+	 * ä¸‹è½½å›¾ç‰‡çš„å¼‚æ­¥çº¿ç¨‹
 	 * @author chunjiang.shieh
 	 *
 	 */
@@ -87,5 +87,5 @@ public class CustomBalloonOverlayView<Item extends OverlayItem> extends BalloonO
 	        return b;
 	    }	
 	}
-	
+
 }

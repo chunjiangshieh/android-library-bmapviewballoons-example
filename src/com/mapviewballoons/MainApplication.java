@@ -9,39 +9,39 @@ import android.content.Context;
 import android.util.Log;
 
 public class MainApplication extends Application {
-	
+
 	private static final String TAG = MainApplication.class.getName();
 	/**
-	 *  ÊÚÈ¨µÄKEY
-	 *  ÉêÇëµØÖ·£ºhttp://dev.baidu.com/wiki/static/imap/key/
+	 *  æˆæƒçš„KEY
+	 *  ç”³è¯·åœ°å€ï¼šhttp://dev.baidu.com/wiki/static/imap/key/
 	 */	
 	private String mStrKey = "CB6E2B6BEF8CDA5FA34192DEA322FCDDF2279008";
-	
-	
+
+
 	private static MainApplication mMainApplication;
 	/**
-	 * °Ù¶ÈµØÍ¼µÄ¹ÜÀíÀà
+	 * ç™¾åº¦åœ°å›¾çš„ç®¡ç†ç±»
 	 */
 	private BMapManager mBMapManager;
-	
-	
-	
+
+
+
 	@Override
 	public void onCreate() {
 		mMainApplication = this;
 		/**
-		 * ³õÊ¼»¯°Ù¶ÈµØÍ¼µÄ¹ÜÀíÕß
+		 * åˆå§‹åŒ–ç™¾åº¦åœ°å›¾çš„ç®¡ç†è€…
 		 */
 		mBMapManager = new BMapManager(this);
 		mBMapManager.init(mStrKey, mMKGeneralListener);
 		super.onCreate();
 	}
-	
-	
+
+
 	@Override
 	public void onTerminate() {
 		/**
-		 * ÍË³öÓ¦ÓÃµÄÊ±ºòÊÍ·Å×ÊÔ´
+		 * é€€å‡ºåº”ç”¨çš„æ—¶å€™é‡Šæ”¾èµ„æº
 		 */
 		if(mBMapManager != null){
 			mBMapManager.destroy();
@@ -49,7 +49,7 @@ public class MainApplication extends Application {
 		}
 		super.onTerminate();
 	}
-	
+
 	public static Context getContext(){
 		if(mMainApplication == null){
 			mMainApplication = new MainApplication();
@@ -58,7 +58,7 @@ public class MainApplication extends Application {
 	}
 
 
-	
+
 	public BMapManager getBMapManager() {
 		return mBMapManager;
 	}
@@ -68,32 +68,32 @@ public class MainApplication extends Application {
 		this.mBMapManager = mBMapManager;
 	}
 
-	
-	
+
+
 	/**
-	 * ³£ÓÃµÄ¼àÌıÊÂ¼ş
-	 * 1.´¦ÀíÍøÂç´íÎó
-	 * 2.´¦ÀíÊÚÈ¨ÑéÖ¤´íÎó
+	 * å¸¸ç”¨çš„ç›‘å¬äº‹ä»¶
+	 * 1.å¤„ç†ç½‘ç»œé”™è¯¯
+	 * 2.å¤„ç†æˆæƒéªŒè¯é”™è¯¯
 	 */
 	private MKGeneralListener mMKGeneralListener = new MKGeneralListener() {
-		
+
 		@Override
 		public void onGetPermissionState(int arg0) {
 			// TODO Auto-generated method stub
 			Log.d(TAG, "GetPermissionState: "+arg0);
 		}
-		
+
 		@Override
 		public void onGetNetworkState(int arg0) {
 			// TODO Auto-generated method stub
 			Log.d(TAG, "GetNetworkState:"+arg0);
-			
+
 		}
 	};
-	
+
 
 	/**
-	 * Æô¶¯°Ù¶ÈµØÍ¼¹ÜÀíÕß
+	 * å¯åŠ¨ç™¾åº¦åœ°å›¾ç®¡ç†è€…
 	 * @return
 	 */
 	public void startBMapManager(){
@@ -103,6 +103,6 @@ public class MainApplication extends Application {
 		}
 		mBMapManager.start();
 	}
-	
-	
+
+
 }

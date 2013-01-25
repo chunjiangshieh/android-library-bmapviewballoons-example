@@ -15,28 +15,28 @@ import com.mapviewballoons.MainApplication;
 import com.mapviewballoons.R;
 
 /**
- * ×Ô¶¨ÒåÆøÇòViewµÄµØÍ¼·ç¸ñ
+ * è‡ªå®šä¹‰æ°”çƒViewçš„åœ°å›¾é£æ ¼
  * @author chunjiang.shieh
  *
  */
 public class CustomMap extends MapActivity {
-	
+
 	private static final String TAG = CustomMap.class.getName();
-	
+
 	private static final String KEY_FOCUSED = "focused_1";
 	private static final String KEY_FOCUSED2 = "focused_2";
-	
-	
+
+
 	private GeoPoint point,point2,point3,point4;
-	
-	
+
+
 	private MapView mMapView;
 	private List<Overlay> mMapOverlays;
 	private Drawable mDrawable;
 	private Drawable mDrawable2;
 	private CustomItemizedOverlay mCustomItemizedOverlay;
 	private CustomItemizedOverlay mCustomItemizedOverlay2;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,9 +48,9 @@ public class CustomMap extends MapActivity {
 		initView();
 		initSaveInstantceState(savedInstanceState);
 	}
-	
+
 	/**
-	 * ³õÊ¼»¯ËùÓĞµÄµØÀíÎ»ÖÃµã
+	 * åˆå§‹åŒ–æ‰€æœ‰çš„åœ°ç†ä½ç½®ç‚¹
 	 */
 	private void initGeoPoint(){
 		point = new GeoPoint((int)(39.90923*1E6),(int)(116.357428*1E6));
@@ -58,21 +58,21 @@ public class CustomMap extends MapActivity {
 		point3 = new GeoPoint((int)(39.96923*1E6),(int)(116.437428*1E6));
 		point4 = new GeoPoint((int)(39.88923*1E6),(int)(116.464428*1E6));
 	}
-	
-	
+
+
 	private void initView(){
 		mMapView = (MapView) findViewById(R.id.mapview);
 		mMapView.setBuiltInZoomControls(true);
 		mMapView.setDrawOverlayWhenZooming(true);
-		
-		
+
+
 		mMapOverlays = mMapView.getOverlays();
-		
-		mDrawable = getResources().getDrawable(R.drawable.marker); //ºìÉ«µÄÔ²µã
-		mDrawable2 = getResources().getDrawable(R.drawable.marker2); //À¶É«µÄÔ²µã
+
+		mDrawable = getResources().getDrawable(R.drawable.marker); //çº¢è‰²çš„åœ†ç‚¹
+		mDrawable2 = getResources().getDrawable(R.drawable.marker2); //è“è‰²çš„åœ†ç‚¹
 
 		/**
-		 * Ã¿¸ö¸²¸ÇÍ¼°üº¬Á½¸öµã
+		 * æ¯ä¸ªè¦†ç›–å›¾åŒ…å«ä¸¤ä¸ªç‚¹
 		 */
 		mCustomItemizedOverlay = new CustomItemizedOverlay(mDrawable, mMapView);
 		CustomOverlayItem mOverlayItem = new CustomOverlayItem(point, "Tomorrow Never Dies (1997)", 
@@ -81,25 +81,25 @@ public class CustomMap extends MapActivity {
 				"(Interiors Russian )","http://ia.media-imdb.com/images/M/MV5BMzk2OTg4MTk1NF5BMl5BanBnXkFtZTcwNjExNTgzNA@@._V1._SX40_CR0,0,40,54_.jpg");
 		mCustomItemizedOverlay.addOverlay(mOverlayItem);
 		mCustomItemizedOverlay.addOverlay(mOverlayItem2);
-		
+
 		mCustomItemizedOverlay2 = new CustomItemizedOverlay(mDrawable2, mMapView);
 		CustomOverlayItem mOverlayItem3 = new CustomOverlayItem(point3, "Sliding Doors (1998)", null,"http://ia.media-imdb.com/images/M/MV5BMjAyNjk5Njk0MV5BMl5BanBnXkFtZTcwOTA4MjIyMQ@@._V1._SX40_CR0,0,40,54_.jpg");
 		CustomOverlayItem mOverlayItem4 = new CustomOverlayItem(point4, "Mission: Impossible (1996)", 
 				"(Ethan & Jim cafe meeting)",null);
 		mCustomItemizedOverlay2.addOverlay(mOverlayItem3);
 		mCustomItemizedOverlay2.addOverlay(mOverlayItem4);
-		
+
 		/**
-		 * Ìí¼Ó2¸ö¸²¸ÇÍ¼µ½¸²¸ÇÍ¼ÁĞ±í
+		 * æ·»åŠ 2ä¸ªè¦†ç›–å›¾åˆ°è¦†ç›–å›¾åˆ—è¡¨
 		 */
 		mMapOverlays.add(mCustomItemizedOverlay);
 		mMapOverlays.add(mCustomItemizedOverlay2);
-		
+
 	}
-	
+
 	/**
-	 * Èç¹û¸ÃActivityÔÚºóÌ¨±»»ØÊÕÁË 
-	 *  savedInstanceState »á²»Îª¿Õ£¬¼ÇÂ¼Ö®Ç°µÄ×´Ì¬
+	 * å¦‚æœè¯¥Activityåœ¨åå°è¢«å›æ”¶äº† 
+	 *  savedInstanceState ä¼šä¸ä¸ºç©ºï¼Œè®°å½•ä¹‹å‰çš„çŠ¶æ€
 	 * @param savedInstanceState
 	 */
 	private void initSaveInstantceState(Bundle savedInstanceState){
@@ -119,11 +119,11 @@ public class CustomMap extends MapActivity {
 				mCustomItemizedOverlay2.setFocus(mCustomItemizedOverlay2.getItem(focused2Index));
 			}
 		}
-		
+
 	}
-	
+
 	/**
-	 * Activity½øÈëºóÌ¨×´Ì¬Ê±±£´æµ±Ç°ActivityµÄ×´Ì¬
+	 * Activityè¿›å…¥åå°çŠ¶æ€æ—¶ä¿å­˜å½“å‰Activityçš„çŠ¶æ€
 	 * 
 	 */
 	@Override
@@ -135,7 +135,7 @@ public class CustomMap extends MapActivity {
 			outState.putInt(KEY_FOCUSED2, mCustomItemizedOverlay2.getLastFocusedIndex());
 		super.onSaveInstanceState(outState);
 	}
-	
+
 
 	@Override
 	protected boolean isRouteDisplayed() {

@@ -19,25 +19,25 @@ import com.readystatesoftware.maps.OnSingleTapListener;
 import com.readystatesoftware.maps.TapControlledMapView;
 
 /**
- * ×Ô¶¨ÒåµÄµØÍ¼ÊÓÍ¼
+ * è‡ªå®šä¹‰çš„åœ°å›¾è§†å›¾
  * @author chunjiang.shieh
  *
  */
 public class TapControlledMap extends MapActivity {
-	
+
 	private static final String TAG = TapControlledMap.class.getName();
 	private static final String KEY_FOCUSED = "focused_1";
 	private static final String KEY_FOCUSED2 = "focused_2";
-	
+
 	private TapControlledMapView mMapView; // use the custom TapControlledMapView
 	private List<Overlay> mMapOverlays;
 	private Drawable mDrawable;
 	private Drawable mDrawable2;
 	private SimpleItemizedOverlay mSimpleItemizedOverlay;
 	private SimpleItemizedOverlay mSimpleItemizedOverlay2;
-	
+
 	private GeoPoint point,point2,point3,point4;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -50,20 +50,20 @@ public class TapControlledMap extends MapActivity {
 		initView();
 		initSaveInstantceState(savedInstanceState);
 	}
-	
-	
-	
+
+
+
 
 	@Override
 	protected boolean isRouteDisplayed() {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
-	
-	
+
+
+
 	/**
-	 * ³õÊ¼»¯¶à¸öÎ»ÖÃµã
+	 * åˆå§‹åŒ–å¤šä¸ªä½ç½®ç‚¹
 	 */
 	private void initGeoPoint(){
 		point = new GeoPoint((int)(39.90923*1E6),(int)(116.357428*1E6));
@@ -71,7 +71,7 @@ public class TapControlledMap extends MapActivity {
 		point3 = new GeoPoint((int)(39.96923*1E6),(int)(116.437428*1E6));
 		point4 = new GeoPoint((int)(39.88923*1E6),(int)(116.464428*1E6));
 	}
-	
+
 	private void initView(){
 		mMapView = (TapControlledMapView) findViewById(R.id.mapview);
 		mMapView.setBuiltInZoomControls(true);
@@ -83,49 +83,49 @@ public class TapControlledMap extends MapActivity {
 				return true;
 			}
 		});
-		
+
 		mMapOverlays = mMapView.getOverlays();
-		
+
 		mDrawable = getResources().getDrawable(R.drawable.marker);
 		mDrawable2 = getResources().getDrawable(R.drawable.marker2);
 
 		/**
-		 * Ã¿¸ö¸²¸ÇÍ¼°üº¬Á½¸öµã
+		 * æ¯ä¸ªè¦†ç›–å›¾åŒ…å«ä¸¤ä¸ªç‚¹
 		 */
 		mSimpleItemizedOverlay = new SimpleItemizedOverlay(mDrawable, mMapView);
 		mSimpleItemizedOverlay.setShowClose(false);
 		mSimpleItemizedOverlay.setShowDisclosure(true);
 		mSimpleItemizedOverlay.setSnapToCenter(false);
-		
+
 		OverlayItem mOverlayItem = new OverlayItem(point, "Tomorrow Never Dies (1997)", 
 				"(M gives Bond his mission in Daimler car)");
 		OverlayItem mOverlayItem2 = new OverlayItem(point2, "GoldenEye (1995)", 
 				"(Interiors Russian defence ministry council chambers in St Petersburg)");
 		mSimpleItemizedOverlay.addOverlay(mOverlayItem);
 		mSimpleItemizedOverlay.addOverlay(mOverlayItem2);
-		
+
 		mSimpleItemizedOverlay2 = new SimpleItemizedOverlay(mDrawable2, mMapView);
 		mSimpleItemizedOverlay.setShowClose(false);
 		mSimpleItemizedOverlay.setShowDisclosure(true);
 		mSimpleItemizedOverlay.setSnapToCenter(false);
-		
+
 		OverlayItem mOverlayItem3 = new OverlayItem(point3, "Sliding Doors (1998)", null);
 		OverlayItem mOverlayItem4 = new OverlayItem(point4, "Mission: Impossible (1996)", 
 				"(Ethan & Jim cafe meeting)");
 		mSimpleItemizedOverlay2.addOverlay(mOverlayItem3);
 		mSimpleItemizedOverlay2.addOverlay(mOverlayItem4);
-		
+
 		/**
-		 * Ìí¼Ó2¸ö¸²¸ÇÍ¼µ½¸²¸ÇÍ¼ÁĞ±í
+		 * æ·»åŠ 2ä¸ªè¦†ç›–å›¾åˆ°è¦†ç›–å›¾åˆ—è¡¨
 		 */
 		mMapOverlays.add(mSimpleItemizedOverlay);
 		mMapOverlays.add(mSimpleItemizedOverlay2);
-		
+
 	}
-	
+
 	/**
-	 * Èç¹û¸ÃActivityÔÚºóÌ¨±»»ØÊÕÁË 
-	 *  savedInstanceState »á²»Îª¿Õ£¬¼ÇÂ¼Ö®Ç°µÄ×´Ì¬
+	 * å¦‚æœè¯¥Activityåœ¨åå°è¢«å›æ”¶äº† 
+	 *  savedInstanceState ä¼šä¸ä¸ºç©ºï¼Œè®°å½•ä¹‹å‰çš„çŠ¶æ€
 	 * @param savedInstanceState
 	 */
 	private void initSaveInstantceState(Bundle savedInstanceState){
@@ -145,11 +145,11 @@ public class TapControlledMap extends MapActivity {
 				mSimpleItemizedOverlay2.setFocus(mSimpleItemizedOverlay2.getItem(focused2Index));
 			}
 		}
-		
+
 	}
-	
+
 	/**
-	 * Activity½øÈëºóÌ¨×´Ì¬Ê±±£´æµ±Ç°ActivityµÄ×´Ì¬
+	 * Activityè¿›å…¥åå°çŠ¶æ€æ—¶ä¿å­˜å½“å‰Activityçš„çŠ¶æ€
 	 * 
 	 */
 	@Override

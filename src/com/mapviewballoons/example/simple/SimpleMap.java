@@ -19,7 +19,7 @@ import com.mapviewballoons.MainApplication;
 import com.mapviewballoons.R;
 
 /**
- * Ä¬ÈÏÆøÇò ViewµÄµØÍ¼·ç¸ñ
+ * é»˜è®¤æ°”çƒ Viewçš„åœ°å›¾é£æ ¼
  * @author chunjiang.shieh
  *
  */
@@ -27,16 +27,16 @@ public class SimpleMap extends MapActivity {
 	private static final String TAG = SimpleMap.class.getName();
 	private static final String KEY_FOCUSED = "focused_1";
 	private static final String KEY_FOCUSED2 = "focused_2";
-	
+
 	private MapView mMapView;
 	private List<Overlay> mMapOverlays;
-	
+
 	private Drawable mDrawable,mDrawable2;
-	
+
 	private SimpleItemizedOverlay mSimpleItemizedOverlay,mSimpleItemizedOverlay2;
-	
+
 	private GeoPoint point,point2,point3,point4;
-	 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,9 +48,9 @@ public class SimpleMap extends MapActivity {
 		initView();
 		initSaveInstantceState(savedInstanceState);
 	}
-	
+
 	/**
-	 * ³õÊ¼»¯¶à¸öÎ»ÖÃµã
+	 * åˆå§‹åŒ–å¤šä¸ªä½ç½®ç‚¹
 	 */
 	private void initGeoPoint(){
 		point = new GeoPoint((int)(39.90923*1E6),(int)(116.357428*1E6));
@@ -58,20 +58,20 @@ public class SimpleMap extends MapActivity {
 		point3 = new GeoPoint((int)(39.96923*1E6),(int)(116.437428*1E6));
 		point4 = new GeoPoint((int)(39.88923*1E6),(int)(116.464428*1E6));
 	}
-	
+
 	private void initView(){
 		mMapView = (MapView) findViewById(R.id.mapview);
 		mMapView.setBuiltInZoomControls(true);
 		mMapView.setDrawOverlayWhenZooming(true);
-		
-		
+
+
 		mMapOverlays = mMapView.getOverlays();
-		
+
 		mDrawable = getResources().getDrawable(R.drawable.marker);
 		mDrawable2 = getResources().getDrawable(R.drawable.marker2);
 
 		/**
-		 * Ã¿¸ö¸²¸ÇÍ¼°üº¬Á½¸öµã
+		 * æ¯ä¸ªè¦†ç›–å›¾åŒ…å«ä¸¤ä¸ªç‚¹
 		 */
 		mSimpleItemizedOverlay = new SimpleItemizedOverlay(mDrawable, mMapView);
 		OverlayItem mOverlayItem = new OverlayItem(point, "Tomorrow Never Dies (1997)", 
@@ -80,25 +80,25 @@ public class SimpleMap extends MapActivity {
 				"(Interiors Russian defence ministry council chambers in St Petersburg)");
 		mSimpleItemizedOverlay.addOverlay(mOverlayItem);
 		mSimpleItemizedOverlay.addOverlay(mOverlayItem2);
-		
+
 		mSimpleItemizedOverlay2 = new SimpleItemizedOverlay(mDrawable2, mMapView);
 		OverlayItem mOverlayItem3 = new OverlayItem(point3, "Sliding Doors (1998)", null);
 		OverlayItem mOverlayItem4 = new OverlayItem(point4, "Mission: Impossible (1996)", 
 				"(Ethan & Jim cafe meeting)");
 		mSimpleItemizedOverlay2.addOverlay(mOverlayItem3);
 		mSimpleItemizedOverlay2.addOverlay(mOverlayItem4);
-		
+
 		/**
-		 * Ìí¼Ó2¸ö¸²¸ÇÍ¼µ½¸²¸ÇÍ¼ÁĞ±í
+		 * æ·»åŠ 2ä¸ªè¦†ç›–å›¾åˆ°è¦†ç›–å›¾åˆ—è¡¨
 		 */
 		mMapOverlays.add(mSimpleItemizedOverlay);
 		mMapOverlays.add(mSimpleItemizedOverlay2);
-		
+
 	}
-	
+
 	/**
-	 * Èç¹û¸ÃActivityÔÚºóÌ¨±»»ØÊÕÁË 
-	 *  savedInstanceState »á²»Îª¿Õ£¬¼ÇÂ¼Ö®Ç°µÄ×´Ì¬
+	 * å¦‚æœè¯¥Activityåœ¨åå°è¢«å›æ”¶äº† 
+	 *  savedInstanceState ä¼šä¸ä¸ºç©ºï¼Œè®°å½•ä¹‹å‰çš„çŠ¶æ€
 	 * @param savedInstanceState
 	 */
 	private void initSaveInstantceState(Bundle savedInstanceState){
@@ -118,11 +118,11 @@ public class SimpleMap extends MapActivity {
 				mSimpleItemizedOverlay2.setFocus(mSimpleItemizedOverlay2.getItem(focused2Index));
 			}
 		}
-		
+
 	}
-	
+
 	/**
-	 * Activity½øÈëºóÌ¨×´Ì¬Ê±±£´æµ±Ç°ActivityµÄ×´Ì¬
+	 * Activityè¿›å…¥åå°çŠ¶æ€æ—¶ä¿å­˜å½“å‰Activityçš„çŠ¶æ€
 	 * 
 	 */
 	@Override
@@ -134,16 +134,16 @@ public class SimpleMap extends MapActivity {
 			outState.putInt(KEY_FOCUSED2, mSimpleItemizedOverlay2.getLastFocusedIndex());
 		super.onSaveInstanceState(outState);
 	}
-	
+
 
 	@Override
 	protected boolean isRouteDisplayed() {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	/**
-	 * ´´½¨²Ëµ¥
+	 * åˆ›å»ºèœå•
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -151,16 +151,16 @@ public class SimpleMap extends MapActivity {
 		menu.add(0, 0, 1, "Remove Overlay");
 		return true;
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
 		if(item.getItemId() == 0){
-			//ÒÆ³ıÇ°ÏÈÒş²Øµ¯³öµÄÆøÇòÊÓÍ¼
+			//ç§»é™¤å‰å…ˆéšè—å¼¹å‡ºçš„æ°”çƒè§†å›¾
 			if(mSimpleItemizedOverlay.getFocus() != null){
 				mSimpleItemizedOverlay.hideBalloon();
 			}
-			//´Ó¸²¸ÇÍ¼ÁĞ±íÒÆ³ı¸²¸ÇÍ¼
+			//ä»è¦†ç›–å›¾åˆ—è¡¨ç§»é™¤è¦†ç›–å›¾
 			mMapOverlays.remove(mSimpleItemizedOverlay);
 			mMapView.invalidate();
 		}
